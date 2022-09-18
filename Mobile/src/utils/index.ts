@@ -1,0 +1,1 @@
+export const CURRENT_IP = '192.168.3.6';
