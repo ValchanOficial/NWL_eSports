@@ -14,7 +14,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use((_, res, next) => {
-    res.append('Access-Control-Allow-Origin', ['*']);
     res.append('Access-Control-Allow-Methods', 'GET, POST');
     res.append('Access-Control-Allow-Headers', 'Content-Type');
     next();
@@ -42,12 +41,12 @@ app.post('/games/:id/ads', async (req: Request, res: Response) => {
             name: data.name,
             yearsPlaying: data.yearsPlaying,
             discord: data.discord,
-            weekDays: data.weekDays,
+            weekDays: data.weekDays.join(','),
             hoursStart: convertHourStringToMinutes(data.hoursStart),
             hoursEnd: convertHourStringToMinutes(data.hoursEnd),
             useVoiceChannel: data.useVoiceChannel,
         }
-    })
+    });
     return res.status(201).json(ad);
 });
 
@@ -71,6 +70,7 @@ app.get('/games/:id/ads', async (req: Request, res: Response) => {
         },
     });
     const formattedAds = ads.map((ad) => {
+        console.log('weekDays', ad.weekDays);
         return {
             ...ad,
             weekDays: ad.weekDays.split(','),
@@ -91,7 +91,7 @@ app.get('/ads/:id/discord', async (req: Request, res: Response) => {
             discord: true,
         },
     });
-    return res.status(200).json({ discord });
+    return res.status(200).json(discord);
 });
 
 // Extra routes
