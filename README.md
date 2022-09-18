@@ -22,8 +22,3 @@ Node Version: >=16.17.0
 ## Figma
 
 Figma: https://www.figma.com/community/file/1150897317533332617
-
-
-
-https://github.com/ValchanOficial/NWL_eSports
-git push -u origin main
