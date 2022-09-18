@@ -1,1 +1,1 @@
-export const CURRENT_IP = '192.168.3.6';
+export const CURRENT_IP = 'ADD_YOUR_IP_HERE';
