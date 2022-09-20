@@ -24,6 +24,6 @@ Node Version: >=16.17.0.
 
 ## Prints
 
-![NLW Web](/Img/NLW.png)
+![NLW Web](/Img/NLW_1.png)
 
 ![NLW Web with Success Toast](/Img/NLW_2.png)
