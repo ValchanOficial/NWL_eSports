@@ -22,6 +22,8 @@ Node Version: >=16.17.0.
 
 - https://www.figma.com/community/file/1150897317533332617
 
-## Print
+## Prints
 
 ![NLW Web](/Img/NLW.png)
+
+![NLW Web with Success Toast](/Img/NLW_2.png)
