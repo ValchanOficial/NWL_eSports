@@ -117,13 +117,47 @@ app.get('/twitch/top-games', async (_: Request, res: Response) => {
         const { data } = await axios.get('https://api.twitch.tv/helix/games/top', {
             headers: {
                 'Authorization': `Bearer ${app.get('auth')}`,
-                'Client-ID': String(process.env.TWITCH_CLIENT_ID),
+                'Client-Id': String(process.env.TWITCH_CLIENT_ID),
             },
         });
         return res.status(200).json(data?.data);
     } catch (error) {
         return res.status(500).json({
-            message: 'Error while fetching Twitch API',
+            message: 'Error while fetching top games',
+        });
+    }
+});
+
+app.get('/twitch/users/:login', async (req: Request, res: Response) => {
+    try {
+        const login = String(req.params.login);
+        const { data } = await axios.get(`https://api.twitch.tv/helix/users?login=${login}`, {
+            headers: {
+                'Authorization': `Bearer ${app.get('auth')}`,
+                'Client-Id': String(process.env.TWITCH_CLIENT_ID),
+            },
+        });
+        return res.status(200).json(data?.data[0]);
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Error while fetching user info',
+        });
+    }
+});
+
+app.get('/twitch/users/follows/:userId', async (req: Request, res: Response) => {
+    try {
+        const userId = String(req.params.userId);
+        const { data } = await axios.get(`https://api.twitch.tv/helix/users/follows?from_id=${userId}`, {
+            headers: {
+                'Authorization': `Bearer ${app.get('auth')}`,
+                'Client-Id': String(process.env.TWITCH_CLIENT_ID),
+            },
+        });
+        return res.status(200).json(data?.data);
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Error while fetching followers',
         });
     }
 });

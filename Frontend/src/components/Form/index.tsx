@@ -3,13 +3,16 @@ import { Check, GameController } from "phosphor-react";
 import * as Dialog from '@radix-ui/react-dialog';
 import * as Checkbox from '@radix-ui/react-checkbox';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
+import 'react-toastify/dist/ReactToastify.css';
+
 import axios from 'axios';
 
 import { Input } from "./Input";
 import { Label } from "./Label";
-
 import { GameBannerProps } from "../GameBanner";
 import { Game } from "../../App";
+
+import { notify } from "../../utils";
 
 export function Form() {
     const [games, setGames] = useState<GameBannerProps[]>([]);
@@ -46,10 +49,10 @@ export function Form() {
                 hoursEnd: data.hoursEnd,
                 useVoiceChannel
             });
-            alert('Anúncio criado com sucesso!');
+            notify('Anúncio criado com sucesso!');
         } catch (error) {
             console.log(error);
-            alert('Erro ao criar anúncio!');
+            notify('Erro ao criar anúncio!', true);
         }
     }
 
